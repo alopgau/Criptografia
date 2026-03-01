@@ -1,13 +1,16 @@
 def pedir_alfabeto() -> str:
     return input("Introduce el alfabeto en el que basaras la encriptación\n").lower()
 def crear_diccionario(alfabeto:str) -> dict[str,str]:
-    diccionario = {" ":" "}
+    diccionario = {}
+    if " " not in alfabeto:
+        diccionario.setdefault(" ", " ")
+
     for i in range(len(alfabeto)):
         diccionario.setdefault(alfabeto[i], alfabeto[len(alfabeto)-1-i])
     return diccionario
 def pedir_textos(diccionario: dict[str,str]) -> None:
     entrada = ""
-    while entrada != "X":
+    while entrada != "x":
         entrada = input("Introduce el texto a encriptar (X para salir)\n").lower()
         texto_encriptado = ""
         for c in entrada:
